@@ -1,2 +1,29 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+    <div class="row">
+        <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+            <h1 class="centered-text">
+                <strong>Cravers</strong>
+            </h1>
+            <p class="centered-text">
+                Post your imaginations on Cravers
+            </p>
+            <div class="btn-wrapper col-10 mx-auto">
+                <% if user_signed_in? %>
+                <div class="row">
+                    <%= link_to "Log in", user_path(current_user.id), class: "btn btn-outline-info btn-sm btn-block mb-3" %>
+                </div>
+                <div class="row">
+                    <%= link_to "Sign up", user_path(current_user.id), class: "btn btn-out-line-success btn-sm btn-clock" %>
+                </div>
+                <% else %>
+                <div class="row">
+                    <%= link_to "Log in", new_user_session_path, class: "btn btn-outline-info btn-sm btn-block mb-3" %>
+                </div>
+                <div class="row">
+                    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-success btn-sm btn-block mb-3" %>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
