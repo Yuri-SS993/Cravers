@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @post_user = current_user
     @newpost = Post.new
     @posts = Post.all
-    @post = Post.all.page(params[:page]).reverse_order.per(20)
+    @postpage = Post.all.page(params[:page]).reverse_order.per(20)
   end
   
   def create
@@ -16,9 +16,8 @@ class PostsController < ApplicationController
       redirect_to post_path(@newpost), notice: "You have successfully posted the new item."
     else
       @post_user = current_user
-      @newpost = Post.new
       @posts = Post.all
-      @post = Post.all.page(params[:page]).reverse_order.per(20)
+      @postpage = Post.all.page(params[:page]).reverse_order.per(20)
       render :index
     end
   end
@@ -27,7 +26,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_user = @post.user
     @newpost = Post.new
-    @post = Post.find(params[:id])
   end
 
   def edit

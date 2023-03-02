@@ -4,12 +4,17 @@
             <%= render 'layouts/user_info', post_user: @post_user, newpost: @newpost, user: @post_user %>
         </div>
         
-        <div class="col-md-7 offset-md-1">
-            <h2>Your works</h2>
+        <div class="col-md-6 offset-md-1">
+            <h2>Your handmade goods</h2>
+            <div>
+                <%= link_to likes_user_path(@user) do %>
+                    <i class="fa-solid fa-heart"></i> Likes
+                <% end %>
+            </div>
             <div class="card-list-container">
                 <%= render 'layouts/post_contents', posts: @posts %>
             </div>
-            <%= paginate @post %>
+            <%= paginate @postpage %>
         </div>
     </div>
 </div>

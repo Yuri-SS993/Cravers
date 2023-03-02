@@ -5,12 +5,12 @@
             <%= render 'layouts/user_info', post_user: @post_user, newpost: @newpost, user: @post_user %>
         </div>
         
-        <div class="mx-auto col-md-7 offset-md-1">
+        <div class="mx-auto col-md-6 offset-md-1">
             <h2>Handmade goods</h2>
             <div class="card-list-container">
-                <%= render 'layouts/post_contents', posts: @posts %>
+                <%= render 'layouts/post_contents', posts: @posts, post: @post %>
             </div>
-            <%= paginate @post %>
+            <%= paginate @postpage %>
         </div>
     </div>
 </div>

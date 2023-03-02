@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :correct_user, only: [:edit, :update]
+  before_action :set_user, only: [:likes]
   
   def index
     @post_user = User.find(current_user.id)
-    @newpost = Post
+    @newpost = Post.new
     @users = User.all
   end
 
   def show
     @post_user = User.find(params[:id])
     @newpost = Post.new
+    @user = current_user
     @posts = Post.where(user_id:params[:id])
-    @post = Post.all.page(params[:page]).reverse_order.per(20)
+    @postpage = Post.all.page(params[:page]).reverse_order.per(20)
   end
 
   def edit
@@ -32,6 +35,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def likes
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_posts = Post.find(likes)
+  end
+  
   private
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
@@ -40,5 +48,9 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
       redirect_to user_path(current_user) unless @user == current_user
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 end
