@@ -15,12 +15,14 @@
                         Title: <%= post.title %>
                     <% end %>
                 </p>
+                
                 <p class="card-text">
                     Opinion: <%= post.body %>
                 </p>
             
-                <span><i class="fa-solid fa-circle-user"></i> By <%= post.user.name %></span> | 
-                <span id ="like_<%= post.id %>">
+                <p><i class="fa-solid fa-circle-user"></i> By <%= post.user.name %></p>
+                
+                <p id ="like_<%= post.id %>">
                     <% if !user_signed_in? %>
                         <i class="fa-regular fa-heart"></i>
                         <%= post.likes.length %> いいね
@@ -35,7 +37,7 @@
                         <% end %>
                         <%= post.likes.length %> いいね
                     <% end %>
-                </span>
+                </p>
             </div>
         </div>
     </div>
