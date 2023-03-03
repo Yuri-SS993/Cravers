@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:likes]
   
   def index
+    @user = User.find(current_user.id)
     @post_user = User.find(current_user.id)
     @newpost = Post.new
     @users = User.all
@@ -36,8 +37,11 @@ class UsersController < ApplicationController
   end
   
   def likes
+    @post_user = User.find(current_user.id)
+    @newpost = Post.new
     likes = Like.where(user_id: @user.id).pluck(:post_id)
     @like_posts = Post.find(likes)
+    @postpage = Post.all.page(params[:page]).reverse_order.per(20)
   end
   
   private

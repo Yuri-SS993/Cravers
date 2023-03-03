@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
+    @user = User.find(current_user.id)
     @post_user = current_user
     @newpost = Post.new
     @posts = Post.all
@@ -10,11 +11,13 @@ class PostsController < ApplicationController
   end
   
   def create
+    @user = User.find(current_user.id)
     @newpost = Post.new(post_params)
     @newpost.user_id = current_user.id
     if @newpost.save
       redirect_to post_path(@newpost), notice: "You have successfully posted the new item."
     else
+      @user = User.find(current_user.id)
       @post_user = current_user
       @posts = Post.all
       @postpage = Post.all.page(params[:page]).reverse_order.per(20)
@@ -23,16 +26,19 @@ class PostsController < ApplicationController
   end
   
   def show
+    @user = User.find(current_user.id)
     @post = Post.find(params[:id])
     @post_user = @post.user
     @newpost = Post.new
   end
 
   def edit
+    @user = User.find(current_user.id)
     @post = Post.find(params[:id])
   end
   
   def update
+    @user = User.find(current_user.id)
     @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "You have successfully updated the post."

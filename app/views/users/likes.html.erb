@@ -5,9 +5,9 @@
         </div>
         
         <div class="col-md-6 offset-md-1">
-            <h2><%= @post_user.name %>'s handmade goods</h2>
+            <h2>Liked posts</h2>
             <div class="card-list-container">
-                <%= render 'layouts/post_contents', posts: @posts %>
+                <%= render 'layouts/post_contents', posts: @like_posts %>
             </div>
             <%= paginate @postpage %>
         </div>
