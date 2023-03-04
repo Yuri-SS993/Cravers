@@ -18,5 +18,21 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
  
- 
- 
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+
+#notice {
+    margin: 0;
+}
+
+div, p {
+ font-family: Garamond;
+}
+
+.row {
+    margin: 0;
+}

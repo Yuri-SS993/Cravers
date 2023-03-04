@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:likes]
   
   def index
-    @user = User.find(current_user.id)
     @post_user = User.find(current_user.id)
     @newpost = Post.new
     @users = User.all
+    @user = User.find(current_user.id)
   end
 
   def show

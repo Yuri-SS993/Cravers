@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   
   def index
     @user = User.find(current_user.id)
-    @post_user = current_user
+    @post_user = User.find(current_user.id)
     @newpost = Post.new
     @posts = Post.all
     @postpage = Post.all.page(params[:page]).reverse_order.per(20)
