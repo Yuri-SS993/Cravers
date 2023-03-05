@@ -7,7 +7,6 @@ class PostsController < ApplicationController
     @post_user = User.find(current_user.id)
     @newpost = Post.new
     @posts = Post.all
-    @postpage = Post.all.page(params[:page]).reverse_order.per(20)
   end
   
   def create
@@ -20,7 +19,6 @@ class PostsController < ApplicationController
       @user = User.find(current_user.id)
       @post_user = current_user
       @posts = Post.all
-      @postpage = Post.all.page(params[:page]).reverse_order.per(20)
       render :index
     end
   end

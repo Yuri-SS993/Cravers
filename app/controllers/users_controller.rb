@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     @newpost = Post.new
     @user = current_user
     @posts = Post.where(user_id:params[:id])
-    @postpage = Post.all.page(params[:page]).reverse_order.per(20)
   end
 
   def edit
@@ -41,7 +40,6 @@ class UsersController < ApplicationController
     @newpost = Post.new
     likes = Like.where(user_id: @user.id).pluck(:post_id)
     @like_posts = Post.find(likes)
-    @postpage = Post.all.page(params[:page]).reverse_order.per(20)
   end
   
   private
